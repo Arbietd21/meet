@@ -47,3 +47,5 @@ Gherkin's Syntax
         Then: A chart visualizing the event details will show up
     }
 }
+
+Serverless functions will be perfect for this project. I will be using serverless functions for many different things like authenticating users. Changing which city the user wants to search in, or how many events they want to see, will also utilize serverless functions. Also when clicking on an event to show the event details, serverless functions will be utilized for that as well.
