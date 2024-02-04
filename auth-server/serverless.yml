@@ -23,7 +23,7 @@ frameworkVersion: "3"
 provider:
   name: aws
   runtime: nodejs18.x
-  region: eu-central-1
+  region: us-east-2
   timout: 30
   environment:
     CLIENT_ID: ${file(config.json):CLIENT_ID}
