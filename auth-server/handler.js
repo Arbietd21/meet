@@ -66,4 +66,44 @@ module.exports.getAccessToken = async (event) => {
                 body: JSON.stringify(error),
             };
         })
+};
+
+module.exports.getCalendarEvents = async (event) => {
+    const accessToken = decodeURIComponent(`${event.pathParameters.accessToken}`);
+
+    return new Promise((resolve, reject) => {
+        calendar.events.list(
+            {
+                calendarId: CALENDAR_ID,
+                auth: oAuth2Client,
+                timeMin: new Date().toISOString(),
+                singleEvents: true,
+                orderBy: "startTime",
+            },
+            (error, response) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(response);
+                }
+            }
+        );
+    })
+        .then((results) => {
+            return {
+                statusCode: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': true,
+                },
+                body: JSON.stringify(results),
+            };
+        })
+        .catch((error) => {
+            // Handle error
+            return {
+                statusCode: 500,
+                body: JSON.stringify(error),
+            };
+        })
 }
