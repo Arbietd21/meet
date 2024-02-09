@@ -6,4 +6,4 @@ describe('<App /> component', () => {
         const AppDOM = render(<App />).container.firstChild;
         expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
     });
-})
+});
