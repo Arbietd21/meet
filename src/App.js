@@ -1,9 +1,10 @@
 import './App.css';
+import EventList from './components/EventList'
 
 function App() {
     return (
-        <div id="event-list">
-            <p>test</p>
+        <div className="App">
+            <EventList />
         </div>
     );
 }
