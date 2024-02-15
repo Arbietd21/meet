@@ -4,7 +4,7 @@ import App from '../App';
 describe('<App /> component', () => {
     let AppDOM;
     beforeEach(() => {
-        AppDom = render(<App />).container.firstChild;
+        AppDOM = render(<App />).container.firstChild;
     })
 
     test('renders list of events', () => {
