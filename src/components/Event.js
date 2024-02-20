@@ -1,11 +1,19 @@
-import { mockData } from '../mock-data'
+import { useState } from "react";
 
-const Event = () => {
+const Event = ({ event }) => {
+    const [showDetails, setShowDetails] = useState(false);
     return (
         <li className="event">
-            <h2 className="event-title">Event Title</h2>
-            <p className="start-time">Event Start Time</p>
-            <p className="event-location">Event Location</p>
+            <h2>Event Title: {event.summary}</h2>
+            <p>Location: {event.location}</p>
+            <p>Event Time: {(new Date(event.created)).toUTCString()}</p>
+            {showDetails ?
+                <p className="details">{event.description}</p> :
+                null
+            }
+            <button className="details-btn" onClick={() => {
+                showDetails ? setShowDetails(false) : setShowDetails(true)
+            }}>{showDetails ? "hide details" : "show details"}</button>
         </li>
     )
 }
