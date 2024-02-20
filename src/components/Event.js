@@ -1,19 +1,22 @@
 import { useState } from "react";
 
+
 const Event = ({ event }) => {
     const [showDetails, setShowDetails] = useState(false);
     return (
-        <li className="event">
-            <h2>Event Title: {event.summary}</h2>
-            <p>Location: {event.location}</p>
-            <p>Event Time: {(new Date(event.created)).toUTCString()}</p>
-            {showDetails ?
-                <p className="details">{event.description}</p> :
-                null
-            }
-            <button className="details-btn" onClick={() => {
-                showDetails ? setShowDetails(false) : setShowDetails(true)
-            }}>{showDetails ? "hide details" : "show details"}</button>
+        <li className="event" >
+            <h2>Event Title</h2>
+            <p>Event Time</p>
+            <p>Event Location</p>
+            <button className='showDetailsButton'
+                onClick={() => setShowDetails(!showDetails)}>
+                {showDetails ? 'Hide Details' : 'Show Details'}
+            </button>
+            {showDetails ? (
+                <div className="details">
+                    <h3>Event Details</h3>
+                    <p>{event.description}</p>
+                </div>) : null}
         </li>
     )
 }
