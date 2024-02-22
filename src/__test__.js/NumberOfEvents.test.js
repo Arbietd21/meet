@@ -1,23 +1,31 @@
 import { render } from '@testing-library/react';
-import NumberOfEvents from '../components/NumberOfEvents.js';
+import { getEvents } from '../api';
+import NumberOfEvents from '../components/NumberOfEvents';
 import userEvent from '@testing-library/user-event';
 
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
-
     beforeEach(() => {
-        NumberOfEventsComponent = render(<NumberOfEvents />);
+        const setErrorAlert = jest.fn();
+
+        NumberOfEventsComponent = render(<NumberOfEvents setNumberOfEvents={() => { }} setErrorAlert={setErrorAlert} />);
     });
 
-    test('component renders textbox', () => {
+    test('has an element with "textbox" role', () => {
         expect(NumberOfEventsComponent.queryByRole("textbox")).toBeInTheDocument();
     });
 
     test('default value is 32', () => {
-
+        expect(NumberOfEventsComponent.queryByRole('textbox')).toHaveValue('32');
     });
 
-    test('update number of events when user types', () => {
+    test('update numberOfEvents when user types', async () => {
+        const numberOfEvents = NumberOfEventsComponent.queryByRole('textbox');
+        const user = userEvent.setup();
+        await user.type(numberOfEvents, '{backspace}{backspace}10');
+        expect(numberOfEvents).toHaveValue('10');
+        expect(setErrorAlert).toHaveBeenCalledWith('');
+    })
 
-    });
+
 });
