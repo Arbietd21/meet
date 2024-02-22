@@ -1,24 +1,27 @@
 import Event from '../components/Event';
 import { render } from '@testing-library/react';
 import userEvent from "@testing-library/user-event"
+import mockData from '../mock-data';
+
 
 describe('<Event /> component', () => {
     let EventComponent;
+    const mock = mockData[0];
 
     beforeEach(() => {
-        EventComponent = render(<Event />);
+        EventComponent = render(<Event event={mock} />);
     });
 
     test('renders event title', () => {
-        expect(EventComponent.queryByText("Event Title")).toBeInTheDocument();
+        expect(EventComponent.queryByText(mock.summary)).toBeInTheDocument();
     });
 
     test('renders event start time', () => {
-        expect(EventComponent.queryByText("Event Time")).toBeInTheDocument();
+        expect(EventComponent.queryByText(mock.created)).toBeInTheDocument();
     });
 
     test('renders event location', () => {
-        expect(EventComponent.queryByText("Event Location")).toBeInTheDocument();
+        expect(EventComponent.queryByText(mock.location)).toBeInTheDocument();
     });
 
     test('renders event details button with title (show details)', () => {
