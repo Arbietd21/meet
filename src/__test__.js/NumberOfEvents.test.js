@@ -5,10 +5,11 @@ import userEvent from '@testing-library/user-event';
 
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
-    beforeEach(() => {
-        const setErrorAlert = jest.fn();
+    let setErrorAlert;
 
-        NumberOfEventsComponent = render(<NumberOfEvents setNumberOfEvents={() => { }} setErrorAlert={setErrorAlert} />);
+    beforeEach(() => {
+        setErrorAlert = jest.fn();
+        NumberOfEventsComponent = render(<NumberOfEvents setNumberOfEvents={() => { }} setErrorAlert={setErrorAlert} setInfoAlert={setErrorAlert} />);
     });
 
     test('has an element with "textbox" role', () => {
